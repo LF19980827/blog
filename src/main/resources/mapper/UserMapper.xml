@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zouxxyy.blog.core.dao.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.zouxxyy.blog.core.entity.User" >
+<mapper namespace="com.hanhan.blog.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.hanhan.blog.entity.User" >
     <id column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="user_pass" property="userPass" jdbcType="VARCHAR" />
@@ -10,7 +10,7 @@
     <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
     <result column="user_avatar" property="userAvatar" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.zouxxyy.blog.core.entity.User" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.hanhan.blog.entity.User" extends="BaseResultMap" >
     <result column="user_profile" property="userProfile" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -31,7 +31,7 @@
     delete from user
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zouxxyy.blog.core.entity.User" >
+  <insert id="insert" parameterType="com.hanhan.blog.entity.User" >
     insert into user (user_id, user_name, user_pass,
                        user_nickname, user_signature, user_email,
                        user_avatar, user_profile)
@@ -39,7 +39,7 @@
             #{userNickname,jdbcType=VARCHAR}, #{userSignature,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR},
             #{userAvatar,jdbcType=VARCHAR}, #{userProfile,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zouxxyy.blog.core.entity.User" >
+  <insert id="insertSelective" parameterType="com.hanhan.blog.entity.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
@@ -94,7 +94,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zouxxyy.blog.core.entity.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.hanhan.blog.entity.User" >
     update user
     <set >
       <if test="userName != null" >
@@ -121,7 +121,7 @@
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zouxxyy.blog.core.entity.User" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hanhan.blog.entity.User" >
     update user
     set user_name = #{userName,jdbcType=VARCHAR},
         user_pass = #{userPass,jdbcType=VARCHAR},
@@ -132,7 +132,7 @@
         user_profile = #{userProfile,jdbcType=LONGVARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zouxxyy.blog.core.entity.User" >
+  <update id="updateByPrimaryKey" parameterType="com.hanhan.blog.entity.User" >
     update user
     set user_name = #{userName,jdbcType=VARCHAR},
         user_pass = #{userPass,jdbcType=VARCHAR},

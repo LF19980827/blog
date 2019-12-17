@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zouxxyy.blog.core.dao.ArticleTagRefMapper">
-  <resultMap id="BaseResultMap" type="com.zouxxyy.blog.core.entity.ArticleTagRef">
+<mapper namespace="com.hanhan.blog.dao.ArticleTagRefMapper">
+  <resultMap id="BaseResultMap" type="com.hanhan.blog.entity.ArticleTagRef">
     <id column="article_id" jdbcType="INTEGER" property="articleId" />
     <id column="tag_id" jdbcType="INTEGER" property="tagId" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="com.zouxxyy.blog.core.entity.ArticleTagRef">
+  <delete id="deleteByPrimaryKey" parameterType="com.hanhan.blog.entity.ArticleTagRef">
     delete from article_tag_ref
     where article_id = #{articleId,jdbcType=INTEGER}
       and tag_id = #{tagId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zouxxyy.blog.core.entity.ArticleTagRef">
+  <insert id="insert" parameterType="com.hanhan.blog.entity.ArticleTagRef">
     insert into article_tag_ref (article_id, tag_id)
     values (#{articleId,jdbcType=INTEGER}, #{tagId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.zouxxyy.blog.core.entity.ArticleTagRef">
+  <insert id="insertSelective" parameterType="com.hanhan.blog.entity.ArticleTagRef">
     insert into article_tag_ref
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="articleId != null">

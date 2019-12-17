@@ -31,7 +31,7 @@
 分步查询变成了这样
 
 ```
-<association property="tagArticleCount" column="tag_id" select="com.zouxxyy.blog.core.dao.ArticleTagRefMapper.getArticleCountByTid"/>
+<association property="tagArticleCount" column="tag_id" select="ArticleTagRefMapper.getArticleCountByTid"/>
 ```
 
 - 因为文章和标签的关系只在关系表中，所以自然用**关系表的mapper**。

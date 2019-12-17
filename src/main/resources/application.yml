@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8888
 
 spring:
   thymeleaf:
@@ -8,9 +8,11 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/zxy_blog_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
+    url: jdbc:mysql://localhost:3306/blog?characterEncoding=utf-8&serverTimezone=UTC
+#    useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
+#    characterEncoding=utf-8&serverTimezone=UTC
     username: root
-    password: elwgelwg
+    password: LF@0827
 
 
 

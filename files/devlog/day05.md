@@ -45,7 +45,7 @@
 
 
 ```
-  <resultMap id="BaseResultMap" type="com.zouxxyy.blog.core.entity.Comment" >
+  <resultMap id="BaseResultMap" type="Comment" >
     <id column="comment_id" property="commentId" jdbcType="BIGINT" />
     <result column="comment_pid" property="commentPid" jdbcType="BIGINT" />
     <result column="comment_article_id" property="commentArticleId" jdbcType="BIGINT" />
@@ -58,8 +58,8 @@
     <result column="comment_like_count" property="commentLikeCount" jdbcType="INTEGER" />
   </resultMap>
 
-  <resultMap id="CommentResultMap" type="com.zouxxyy.blog.core.entity.Comment" extends="BaseResultMap">
-    <association property="commentArticleTitle" column="comment_article_id" select="com.zouxxyy.blog.core.dao.ArticleMapper.getArticleTitleByAid"/>
+  <resultMap id="CommentResultMap" type="Comment" extends="BaseResultMap">
+    <association property="commentArticleTitle" column="comment_article_id" select="ArticleMapper.getArticleTitleByAid"/>
   </resultMap>
 ```
 
@@ -68,14 +68,14 @@
 在该map中，因为是我们自己的回复，所以省去了作者信息。另外添加了`commentPContent`也就是该回复对应的评论，通过`comment_pid`分步查询得到
 
 ```
-  <resultMap id="ReplyResultMap" type="com.zouxxyy.blog.core.entity.Comment" >
+  <resultMap id="ReplyResultMap" type="Comment" >
     <id column="comment_id" property="commentId" jdbcType="BIGINT" />
     <result column="comment_pid" property="commentPid" jdbcType="BIGINT" />
     <result column="comment_article_id" property="commentArticleId" jdbcType="BIGINT" />
     <result column="comment_content" property="commentContent" jdbcType="VARCHAR" />
     <result column="comment_create_time" property="commentCreateTime" jdbcType="TIMESTAMP" />
-    <association property="commentArticleTitle" column="comment_article_id" select="com.zouxxyy.blog.core.dao.ArticleMapper.getArticleTitleByAid"/>
-    <association property="commentPContent" column="comment_pid" select="com.zouxxyy.blog.core.dao.CommentMapper.getCommentContentByCommentId"/>
+    <association property="commentArticleTitle" column="comment_article_id" select="ArticleMapper.getArticleTitleByAid"/>
+    <association property="commentPContent" column="comment_pid" select="CommentMapper.getCommentContentByCommentId"/>
   </resultMap>
 ```
 

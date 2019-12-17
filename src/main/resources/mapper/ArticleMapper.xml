@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zouxxyy.blog.core.dao.ArticleMapper" >
-  <resultMap id="BaseResultMap" type="com.zouxxyy.blog.core.entity.Article" >
+<mapper namespace="com.hanhan.blog.dao.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.hanhan.blog.entity.Article" >
     <id column="article_id" property="articleId" jdbcType="INTEGER" />
     <result column="article_user_id" property="articleUserId" jdbcType="INTEGER" />
     <result column="article_category_id" property="articleCategoryId" jdbcType="INTEGER" />
@@ -14,15 +14,15 @@
     <result column="article_update_time" property="articleUpdateTime" jdbcType="TIMESTAMP" />
     <result column="article_create_time" property="articleCreateTime" jdbcType="TIMESTAMP" />
 
-    <association property="articleCategory" column="article_category_id" select="com.zouxxyy.blog.core.dao.CategoryMapper.selectByPrimaryKey"/>
-    <association property="tagList" column="article_id" select="com.zouxxyy.blog.core.dao.TagMapper.getTagByAid"/>
+    <association property="articleCategory" column="article_category_id" select="com.hanhan.blog.dao.CategoryMapper.selectByPrimaryKey"/>
+    <association property="tagList" column="article_id" select="com.hanhan.blog.dao.TagMapper.getTagByAid"/>
   </resultMap>
 
-  <resultMap id="ResultMapWithBLOBs" type="com.zouxxyy.blog.core.entity.Article" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.hanhan.blog.entity.Article" extends="BaseResultMap" >
     <result column="article_content" property="articleContent" jdbcType="LONGVARCHAR" />
   </resultMap>
 
-<!--  <resultMap id="BaseResultMapPlus" type="com.zouxxyy.blog.core.entity.Article" extends="BaseResultMap" >-->
+<!--  <resultMap id="BaseResultMapPlus" type="Article" extends="BaseResultMap" >-->
 <!--    <result column="category_name" property="categoryName" jdbcType="LONGVARCHAR" />-->
 <!--  </resultMap>-->
 
@@ -56,7 +56,7 @@
     delete from article
     where article_id = #{articleId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zouxxyy.blog.core.entity.Article" >
+  <insert id="insert" parameterType="com.hanhan.blog.entity.Article" >
     insert into article (article_id, article_user_id, article_category_id, 
       article_title, article_view_count, article_comment_count, 
       article_like_count, article_status, article_enable_comment, 
@@ -71,7 +71,7 @@
 
   <!--注意了 useGeneratedKeys="true" keyProperty="articleId"-->
   <insert id="insertSelective" useGeneratedKeys="true" keyProperty="articleId"
-          parameterType="com.zouxxyy.blog.core.entity.Article" >
+          parameterType="com.hanhan.blog.entity.Article" >
     insert into article
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="articleId != null" >
@@ -150,7 +150,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zouxxyy.blog.core.entity.Article" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.hanhan.blog.entity.Article" >
     update article
     <set >
       <if test="articleUserId != null" >
@@ -189,7 +189,7 @@
     </set>
     where article_id = #{articleId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zouxxyy.blog.core.entity.Article" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hanhan.blog.entity.Article" >
     update article
     set article_user_id = #{articleUserId,jdbcType=INTEGER},
       article_category_id = #{articleCategoryId,jdbcType=INTEGER},
@@ -204,7 +204,7 @@
       article_content = #{articleContent,jdbcType=LONGVARCHAR}
     where article_id = #{articleId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zouxxyy.blog.core.entity.Article" >
+  <update id="updateByPrimaryKey" parameterType="com.hanhan.blog.entity.Article" >
     update article
     set article_user_id = #{articleUserId,jdbcType=INTEGER},
       article_category_id = #{articleCategoryId,jdbcType=INTEGER},

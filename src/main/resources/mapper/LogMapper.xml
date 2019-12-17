@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zouxxyy.blog.core.dao.LogMapper" >
-  <resultMap id="BaseResultMap" type="com.zouxxyy.blog.core.entity.Log" >
+<mapper namespace="com.hanhan.blog.dao.LogMapper" >
+  <resultMap id="BaseResultMap" type="com.hanhan.blog.entity.Log" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="time" property="time" jdbcType="TIMESTAMP" />
     <result column="type" property="type" jdbcType="VARCHAR" />
@@ -21,13 +21,13 @@
     delete from log
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zouxxyy.blog.core.entity.Log" >
+  <insert id="insert" parameterType="com.hanhan.blog.entity.Log" >
     insert into log (id, time, type, 
       detail, ip)
     values (#{id,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{type,jdbcType=VARCHAR}, 
       #{detail,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zouxxyy.blog.core.entity.Log" >
+  <insert id="insertSelective" parameterType="com.hanhan.blog.entity.Log" >
     insert into log
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zouxxyy.blog.core.entity.Log" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.hanhan.blog.entity.Log" >
     update log
     <set >
       <if test="time != null" >
@@ -82,7 +82,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zouxxyy.blog.core.entity.Log" >
+  <update id="updateByPrimaryKey" parameterType="com.hanhan.blog.entity.Log" >
     update log
     set time = #{time,jdbcType=TIMESTAMP},
       type = #{type,jdbcType=VARCHAR},

@@ -42,8 +42,8 @@
 分步查询变成了这样
 
 ```
-<association property="articleCategory" column="article_category_id" select="com.zouxxyy.blog.core.dao.CategoryMapper.selectByPrimaryKey"/>
-<association property="tagList" column="article_id" select="com.zouxxyy.blog.core.dao.TagMapper.getTagByAid"/>
+<association property="articleCategory" column="article_category_id" select="CategoryMapper.selectByPrimaryKey"/>
+<association property="tagList" column="article_id" select="TagMapper.getTagByAid"/>
 ```
 
 还是好理解的，一个返回单一对象，一个列表对象。其中针对列表的jqGrid显示如下：
@@ -155,7 +155,7 @@
 ```
   <!--注意useGeneratedKeys="true" keyProperty="articleId"-->
   <insert id="insertSelective" useGeneratedKeys="true" keyProperty="articleId"
-          parameterType="com.zouxxyy.blog.core.entity.Article" >
+          parameterType="Article" >
   ...
 ```
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zouxxyy.blog.core.dao.CommentMapper" >
-  <resultMap id="BaseResultMap" type="com.zouxxyy.blog.core.entity.Comment" >
+<mapper namespace="com.hanhan.blog.dao.CommentMapper" >
+  <resultMap id="BaseResultMap" type="com.hanhan.blog.entity.Comment" >
     <id column="comment_id" property="commentId" jdbcType="BIGINT" />
     <result column="comment_pid" property="commentPid" jdbcType="BIGINT" />
     <result column="comment_article_id" property="commentArticleId" jdbcType="BIGINT" />
@@ -14,18 +14,18 @@
     <result column="comment_like_count" property="commentLikeCount" jdbcType="INTEGER" />
   </resultMap>
 
-  <resultMap id="CommentResultMap" type="com.zouxxyy.blog.core.entity.Comment" extends="BaseResultMap">
-    <association property="commentArticleTitle" column="comment_article_id" select="com.zouxxyy.blog.core.dao.ArticleMapper.getArticleTitleByAid"/>
+  <resultMap id="CommentResultMap" type="com.hanhan.blog.entity.Comment" extends="BaseResultMap">
+    <association property="commentArticleTitle" column="comment_article_id" select="com.hanhan.blog.dao.ArticleMapper.getArticleTitleByAid"/>
   </resultMap>
 
-  <resultMap id="ReplyResultMap" type="com.zouxxyy.blog.core.entity.Comment" >
+  <resultMap id="ReplyResultMap" type="com.hanhan.blog.entity.Comment" >
     <id column="comment_id" property="commentId" jdbcType="BIGINT" />
     <result column="comment_pid" property="commentPid" jdbcType="BIGINT" />
     <result column="comment_article_id" property="commentArticleId" jdbcType="BIGINT" />
     <result column="comment_content" property="commentContent" jdbcType="VARCHAR" />
     <result column="comment_create_time" property="commentCreateTime" jdbcType="TIMESTAMP" />
-    <association property="commentArticleTitle" column="comment_article_id" select="com.zouxxyy.blog.core.dao.ArticleMapper.getArticleTitleByAid"/>
-    <association property="commentPContent" column="comment_pid" select="com.zouxxyy.blog.core.dao.CommentMapper.getCommentContentByCommentId"/>
+    <association property="commentArticleTitle" column="comment_article_id" select="com.hanhan.blog.dao.ArticleMapper.getArticleTitleByAid"/>
+    <association property="commentPContent" column="comment_pid" select="com.hanhan.blog.dao.CommentMapper.getCommentContentByCommentId"/>
   </resultMap>
 
   <sql id="Base_Column_List" >
@@ -43,7 +43,7 @@
     delete from comment
     where comment_id = #{commentId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.zouxxyy.blog.core.entity.Comment" >
+  <insert id="insert" parameterType="com.hanhan.blog.entity.Comment" >
     insert into comment (comment_id, comment_pid, comment_article_id, 
       comment_author_name, comment_author_email, 
       comment_author_ip, comment_content, comment_create_time, 
@@ -53,7 +53,7 @@
       #{commentAuthorIp,jdbcType=VARCHAR}, #{commentContent,jdbcType=VARCHAR}, #{commentCreateTime,jdbcType=TIMESTAMP}, 
       #{commentStatus,jdbcType=TINYINT}, #{commentLikeCount,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.zouxxyy.blog.core.entity.Comment" >
+  <insert id="insertSelective" parameterType="com.hanhan.blog.entity.Comment" >
     insert into comment
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="commentId != null" >
@@ -120,7 +120,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zouxxyy.blog.core.entity.Comment" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.hanhan.blog.entity.Comment" >
     update comment
     <set >
       <if test="commentPid != null" >
@@ -153,7 +153,7 @@
     </set>
     where comment_id = #{commentId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zouxxyy.blog.core.entity.Comment" >
+  <update id="updateByPrimaryKey" parameterType="com.hanhan.blog.entity.Comment" >
     update comment
     set comment_pid = #{commentPid,jdbcType=BIGINT},
       comment_article_id = #{commentArticleId,jdbcType=BIGINT},

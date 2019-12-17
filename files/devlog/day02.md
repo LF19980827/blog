@@ -48,7 +48,7 @@ List<Category> categoryList = categoryMapper.getCategoryByStartAndLimit((page - 
 从建的表我们可以发现里面并没有文章个数这一栏，那咋办? 划重点！我通过mybatis的**分步查询**查到它，并封抓装到category的categoryArticleCount属性中。
 
 ```
-<association property="categoryArticleCount" column="category_id" select="com.zouxxyy.blog.core.dao.ArticleMapper.getArticleCountByCid"/>
+<association property="categoryArticleCount" column="category_id" select="ArticleMapper.getArticleCountByCid"/>
 ```
 
 

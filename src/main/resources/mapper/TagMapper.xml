@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zouxxyy.blog.core.dao.TagMapper" >
-  <resultMap id="BaseResultMap" type="com.zouxxyy.blog.core.entity.Tag" >
+<mapper namespace="com.hanhan.blog.dao.TagMapper" >
+  <resultMap id="BaseResultMap" type="com.hanhan.blog.entity.Tag" >
     <id column="tag_id" property="tagId" jdbcType="INTEGER" />
     <result column="tag_name" property="tagName" jdbcType="VARCHAR" />
 
-    <association property="tagArticleCount" column="tag_id" select="com.zouxxyy.blog.core.dao.ArticleTagRefMapper.getArticleCountByTid"/>
+    <association property="tagArticleCount" column="tag_id" select="com.hanhan.blog.dao.ArticleTagRefMapper.getArticleCountByTid"/>
   </resultMap>
   <sql id="Base_Column_List" >
     tag_id, tag_name
@@ -20,11 +20,11 @@
     delete from tag
     where tag_id = #{tagId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zouxxyy.blog.core.entity.Tag" >
+  <insert id="insert" parameterType="com.hanhan.blog.entity.Tag" >
     insert into tag (tag_id, tag_name)
     values (#{tagId,jdbcType=INTEGER}, #{tagName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zouxxyy.blog.core.entity.Tag" >
+  <insert id="insertSelective" parameterType="com.hanhan.blog.entity.Tag" >
     insert into tag
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="tagId != null" >
@@ -43,7 +43,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zouxxyy.blog.core.entity.Tag" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.hanhan.blog.entity.Tag" >
     update tag
     <set >
       <if test="tagName != null" >
@@ -52,7 +52,7 @@
     </set>
     where tag_id = #{tagId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zouxxyy.blog.core.entity.Tag" >
+  <update id="updateByPrimaryKey" parameterType="com.hanhan.blog.entity.Tag" >
     update tag
     set tag_name = #{tagName,jdbcType=VARCHAR}
     where tag_id = #{tagId,jdbcType=INTEGER}

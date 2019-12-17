@@ -8,10 +8,10 @@
         <version>2.1.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.zouxxyy.blog.core</groupId>
-    <artifactId>zxy-blog</artifactId>
+    <groupId>com.hanhan.blog</groupId>
+    <artifactId>blog</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>zxy-blog</name>
+    <name>blog</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

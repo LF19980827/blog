@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zouxxyy.blog.core.dao.CategoryMapper" >
-  <resultMap id="BaseResultMap" type="com.zouxxyy.blog.core.entity.Category" >
+<mapper namespace="com.hanhan.blog.dao.CategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.hanhan.blog.entity.Category" >
     <id column="category_id" property="categoryId" jdbcType="INTEGER" />
     <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
 
-    <association property="categoryArticleCount" column="category_id" select="com.zouxxyy.blog.core.dao.ArticleMapper.getArticleCountByCid"/>
+    <association property="categoryArticleCount" column="category_id" select="com.hanhan.blog.dao.ArticleMapper.getArticleCountByCid"/>
   </resultMap>
 
   <sql id="Base_Column_List" >
@@ -22,11 +22,11 @@
     delete from category
     where category_id = #{categoryId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zouxxyy.blog.core.entity.Category" >
+  <insert id="insert" parameterType="com.hanhan.blog.entity.Category" >
     insert into category (category_id, category_name)
     values (#{categoryId,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zouxxyy.blog.core.entity.Category" >
+  <insert id="insertSelective" parameterType="com.hanhan.blog.entity.Category" >
     insert into category
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="categoryId != null" >
@@ -45,7 +45,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zouxxyy.blog.core.entity.Category" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.hanhan.blog.entity.Category" >
     update category
     <set >
       <if test="categoryName != null" >
@@ -55,7 +55,7 @@
     where category_id = #{categoryId,jdbcType=INTEGER}
   </update>
 
-  <update id="updateByPrimaryKey" parameterType="com.zouxxyy.blog.core.entity.Category" >
+  <update id="updateByPrimaryKey" parameterType="com.hanhan.blog.entity.Category" >
     update category
     set category_name = #{categoryName,jdbcType=VARCHAR}
     where category_id = #{categoryId,jdbcType=INTEGER}
