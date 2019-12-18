@@ -62,7 +62,7 @@ public class ArticleServiceImpl implements ArticleService {
 
         Set<String> deleteTags = new HashSet<>();
         Integer articleId = article.getArticleId();
-        // 跟新旧文章
+        // 更新旧文章
         if(articleId != null) {
 
             // 根据文章id获得全部的标签名
@@ -76,7 +76,6 @@ public class ArticleServiceImpl implements ArticleService {
                 }
             }
             // 更新文章
-
 
             Article newArticle = articleMapper.selectByPrimaryKey(articleId);
             newArticle.setArticleUpdateTime(new Date());

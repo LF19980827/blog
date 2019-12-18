@@ -11,7 +11,7 @@ spingboot的入门实战教程
 体验
 clone项目，导入IDE中，选择maven导入
 
-导入数据库文件files/sql/zxy_blog_db.sql，修改application.yml中数据库的配置。
+导入数据库文件files/sql/blog_db.sql，修改application.yml中数据库的配置。
 
 启动ZxyBlogApplication.java
 

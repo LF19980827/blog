@@ -81,22 +81,10 @@ public class ArticleController {
     // 保存新文章
     @PostMapping("/articles/save")
     @ResponseBody
-    public Result save(@RequestParam("articleTitle") String articleTitle,
-                       @RequestParam("articleCategoryId") Integer articleCategoryId,
-                       @RequestParam("articleTags") String articleTags,
-                       @RequestParam("articleContent") String articleContent,
-                       @RequestParam("articleStatus") Byte articleStatus,
-                       @RequestParam("articleEnableComment") Byte articleEnableComment) {
-        Article article = new Article();
-        article.setArticleTitle(articleTitle);
-        article.setArticleCategoryId(articleCategoryId);
-        article.setArticleContent(articleContent);
-        article.setArticleStatus(articleStatus);
-        article.setArticleEnableComment(articleEnableComment);
+    public Result save(Article article,@RequestParam("articleTags") String articleTags) {
 
-        logService.addLog("添加文章", articleTitle);
+        logService.addLog("添加文章", article.getArticleTitle());
         String saveBlogResult = articleService.saveArticle(article, articleTags);
-
 
         if ("SUCCESS".equals(saveBlogResult)) {
             return new Result<>(200, saveBlogResult, null);
@@ -105,25 +93,12 @@ public class ArticleController {
         }
     }
 
-    // 保存新文章
+    // 修改旧文章
     @PostMapping("/articles/update")
     @ResponseBody
-    public Result save(@RequestParam("articleId") Integer articleId,
-                       @RequestParam("articleTitle") String articleTitle,
-                       @RequestParam("articleCategoryId") Integer articleCategoryId,
-                       @RequestParam("articleTags") String articleTags,
-                       @RequestParam("articleContent") String articleContent,
-                       @RequestParam("articleStatus") Byte articleStatus,
-                       @RequestParam("articleEnableComment") Byte articleEnableComment) {
-        Article article = new Article();
-        article.setArticleId(articleId);
-        article.setArticleTitle(articleTitle);
-        article.setArticleCategoryId(articleCategoryId);
-        article.setArticleContent(articleContent);
-        article.setArticleStatus(articleStatus);
-        article.setArticleEnableComment(articleEnableComment);
+    public Result update(Article article, @RequestParam("articleTags") String articleTags) {
 
-        logService.addLog("更新文章", articleTitle);
+        logService.addLog("更新文章", article.getArticleTitle());
         String saveBlogResult = articleService.saveArticle(article, articleTags);
 
         if ("SUCCESS".equals(saveBlogResult)) {
