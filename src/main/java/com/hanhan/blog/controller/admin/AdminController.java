@@ -46,22 +46,20 @@ public class AdminController {
     @PostMapping("/login")
     public String login(@RequestParam("userName") String userName,
                         @RequestParam("password") String passWord,
-                        HttpSession session,
-                        HttpServletRequest httpServletRequest) {
+                        HttpSession session, HttpServletRequest httpServletRequest) {
         if(StringUtils.isEmpty(userName) || StringUtils.isEmpty(passWord)) {
             session.setAttribute("errorMsg", "用户或密码不能为空");
         }
 
         User user = userService.login(userName, passWord);
         if(user != null) {
-
             // 将昵称和id存入session域中，用于登陆拦截器
             session.setAttribute("loginUser", user.getUserNickname());
             session.setAttribute("loginUserId", user.getUserId());
             // 获取访问IP，用于日志记录
             LoginIp = httpServletRequest.getRemoteAddr();
             logService.addLog("登陆", user.getUserNickname() + " 登陆");
-            // 登陆成功，进入首页
+            // 登陆成功，进入首页(重定向)
             return "redirect:/admin/index";
         }
         else {
@@ -87,7 +85,6 @@ public class AdminController {
         request.setAttribute("articleList", articlePageResult.getList());
 
         return "admin/index";
-
     }
 
     // 进入修改密码页面
@@ -104,13 +101,15 @@ public class AdminController {
     // 修改名称和昵称
     @PostMapping("/profile/name")
     @ResponseBody
-    public String nameUpdate(HttpServletRequest request, @RequestParam("userName") String userName,
-                             @RequestParam("userNickName") String userNickName) {
+    public String nameUpdate(@RequestParam("userName") String userName,
+                             @RequestParam("userNickName") String userNickName,
+                             HttpServletRequest request) {
         if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(userNickName)) {
             return "参数不能为空";
         }
         Integer loginUserId = (int) request.getSession().getAttribute("loginUserId");
         if (userService.updateName(loginUserId, userName, userNickName)) {
+            //添加日志
             logService.addLog("修改基本信息", "登陆名： " + userName +  " , 昵称： " + userNickName);
             return "success";
         } else {
@@ -121,8 +120,9 @@ public class AdminController {
     // 修改密码
     @PostMapping("/profile/password")
     @ResponseBody
-    public String passwordUpdate(HttpServletRequest request, @RequestParam("originalPassword") String originalPassword,
-                                 @RequestParam("newPassword") String newPassword) {
+    public String passwordUpdate(@RequestParam("originalPassword") String originalPassword,
+                                 @RequestParam("newPassword") String newPassword,
+                                 HttpServletRequest request) {
         if (StringUtils.isEmpty(originalPassword) || StringUtils.isEmpty(newPassword)) {
             return "参数不能为空";
         }

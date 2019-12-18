@@ -36,7 +36,6 @@ public class ArticleController {
     @GetMapping("/articles/list")
     @ResponseBody
     public Result list(@RequestParam Map<String, Object> params) {
-
         // 前端发送 page 当前页码， limit 每页个数
         int page = Integer.parseInt(params.get("page").toString());
         int limit = Integer.parseInt(params.get("limit").toString());
@@ -64,14 +63,16 @@ public class ArticleController {
         if (article == null) {
             return "error/error_400";
         }
+        //将标签List转换为String传给前端
         List<Tag> tagList = article.getTagList();
         StringBuilder tags = new StringBuilder();
         for (int i = 0; i < tagList.size(); i++) {
             tags.append(tagList.get(i).getTagName());
-            if(i < tagList.size() - 1) {
+            if (i < tagList.size() - 1) {
                 tags.append(",");
             }
         }
+
         request.setAttribute("article", article);
         request.setAttribute("categories", categoryService.getAllCategories());
         request.setAttribute("tags", tags);
@@ -81,8 +82,7 @@ public class ArticleController {
     // 保存新文章
     @PostMapping("/articles/save")
     @ResponseBody
-    public Result save(Article article,@RequestParam("articleTags") String articleTags) {
-
+    public Result save(Article article, @RequestParam("articleTags") String articleTags) {
         logService.addLog("添加文章", article.getArticleTitle());
         String saveBlogResult = articleService.saveArticle(article, articleTags);
 
@@ -116,7 +116,7 @@ public class ArticleController {
         if (ids.length < 1) {
             return new Result<>(500, "参数异常！", null);
         }
-
+        //查询要批量删除的文章的名字
         List<String> logDetails = articleService.getBatchNames(ids);
 
         if (articleService.deleteBatch(ids)) {

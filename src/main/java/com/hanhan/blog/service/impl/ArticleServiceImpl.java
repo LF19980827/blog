@@ -52,7 +52,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public String saveArticle(Article article, String articleTags) {
         String[] tags = articleTags.split(",");
-        // 原始标签集合
+        //文章标签集合
         Set<String> newTags = new HashSet<>(Arrays.asList(tags));
         if (tags.length > 6) {
             return "标签数量限制为6";
@@ -60,23 +60,23 @@ public class ArticleServiceImpl implements ArticleService {
 
         // 文章添加userID，暂时不添加，因为只有一个作者
 
-        Set<String> deleteTags = new HashSet<>();
+        Set<String> deleteTags = new HashSet<>();  //文章更新后需要删除的标签
         Integer articleId = article.getArticleId();
         // 更新旧文章
         if(articleId != null) {
-
-            // 根据文章id获得全部的标签名
+            // 根据文章id获得原来的全部标签名
             List<Tag> oldTagsList =  tagMapper.getTagByAid(articleId);
             for (Tag tag : oldTagsList) {
                 if(newTags.contains(tag.getTagName())) {
+                    //如果更改前后都有的标签就从新标签里删除
                     newTags.remove(tag.getTagName());
                 }
                 else {
+                    //如果出现更改前有，更改后没有的标签，则添加至删除标签列表
                     deleteTags.add(tag.getTagName());
                 }
             }
             // 更新文章
-
             Article newArticle = articleMapper.selectByPrimaryKey(articleId);
             newArticle.setArticleUpdateTime(new Date());
             newArticle.setArticleTitle(article.getArticleTitle());

@@ -76,6 +76,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> getAllCategories() {
+        //如何没有分页条件，默认查询所有
         return categoryMapper.getCategoryByStartAndLimit(null, null);
     }
 

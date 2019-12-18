@@ -19,6 +19,7 @@
   <sql id="Blob_Column_List" >
     user_profile
   </sql>
+<!--根据主键查询-->
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
@@ -39,6 +40,8 @@
             #{userNickname,jdbcType=VARCHAR}, #{userSignature,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR},
             #{userAvatar,jdbcType=VARCHAR}, #{userProfile,jdbcType=LONGVARCHAR})
   </insert>
+
+<!--根据主键选择性更新-->
   <insert id="insertSelective" parameterType="com.hanhan.blog.entity.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
