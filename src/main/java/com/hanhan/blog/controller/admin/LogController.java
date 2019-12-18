@@ -27,7 +27,7 @@ public class LogController {
     /**
      * 日志列表
      */
-    @RequestMapping(value = "/log/list", method = RequestMethod.GET)
+    @GetMapping(value = "/log/list")
     @ResponseBody
     public Result list(@RequestParam Map<String, Object> params) {
 
@@ -41,7 +41,7 @@ public class LogController {
         return new Result<>(200, "SUCCESS", pageResult);
     }
 
-    @RequestMapping(value = "/log/delete", method = RequestMethod.POST)
+    @PostMapping(value = "/log/delete")
     @ResponseBody
     public Result delete(@RequestBody Integer[] ids) {
         if (ids.length < 1) {

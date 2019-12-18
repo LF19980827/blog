@@ -14,9 +14,6 @@ spring:
     username: root
     password: LF@0827
 
-
-
-
 # mybatis config
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
