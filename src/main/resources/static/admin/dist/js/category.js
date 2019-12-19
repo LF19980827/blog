@@ -18,11 +18,13 @@ $(function () {
         multiselect: true,
         pager: "#jqGridPager",
         jsonReader: {
-            root: "data.list",
-            page: "data.currPage",
-            total: "data.totalPage",
-            records: "data.totalCount"
+            root: "data.list",           //列表数据
+            page: "data.currPage",          //当前页数
+            total: "data.totalPage",           //总页数
+            records: "data.totalCount"          //总记录数
         },
+        //在显示区域，会显示分类的名字，和该分类文章的数量，且分页展示。
+        // 发送一个map给后台：page(第几页) limit(每页个数)
         prmNames: {
             page: "page",
             rows: "limit",
@@ -33,7 +35,7 @@ $(function () {
             $("#jqGrid").closest(".ui-jqgrid-bdiv").css({"overflow-x": "hidden"});
         }
     });
-
+    //jq的imagepicker图片选择器，select元素转换成一个更加用户友好的图形界面，支持单选多选
     jQuery("select.image-picker").imagepicker({
         hide_select: false,
     });

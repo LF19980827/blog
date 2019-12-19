@@ -106,6 +106,7 @@ function reply() {
 //绑定modal上的保存按钮
 $('#saveButton').click(function () {
     var replyBody = $("#replyBody").val();
+    //正则匹配2-100位的中英文字符串
     if (!validCN_ENString2_100(replyBody)) {
         swal("请输入符合规范的回复信息!", {
             icon: "warning",

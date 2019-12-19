@@ -18,7 +18,7 @@ import java.util.Map;
 public class CategoryController {
 
     @Resource
-    private CategoryService categoryService;
+        private CategoryService categoryService;
 
     @Resource
     private LogService logService;
@@ -51,7 +51,7 @@ public class CategoryController {
      */
     @RequestMapping(value = "/categories/save", method = RequestMethod.POST)
     @ResponseBody
-    public Result save(@RequestParam("categoryName") String categoryName) {
+        public Result save(@RequestParam("categoryName") String categoryName) {
         if (StringUtils.isEmpty(categoryName)) {
             return new Result<>(500, "请输入分类名称！", null);
         }
@@ -62,7 +62,6 @@ public class CategoryController {
             return new Result<>(500, "分类名称重复", null);
         }
     }
-
     /**
      * 分类修改
      */

@@ -12,7 +12,7 @@ spring:
 #    useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
 #    characterEncoding=utf-8&serverTimezone=UTC
     username: root
-    password: LF@0827
+    password: root
 
 # mybatis config
 mybatis:

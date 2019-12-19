@@ -1,5 +1,5 @@
 package com.hanhan.blog.entity;
-
+//实例类
 public class Category {
     private Integer categoryId;
 

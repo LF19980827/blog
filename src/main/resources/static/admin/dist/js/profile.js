@@ -79,6 +79,7 @@ function validUserNameForUpdate(userName, userNickName) {
  * 密码验证
  */
 function validPasswordForUpdate(originalPassword, newPassword, newPasswordConfirm) {
+    // trim() 方法用于删除字符串的头尾空格
     if (isNull(originalPassword) || originalPassword.trim().length < 1) {
         $('#updatePassword-info').css("display", "block");
         $('#updatePassword-info').html("请输入原密码！");

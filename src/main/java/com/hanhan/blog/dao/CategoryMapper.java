@@ -17,9 +17,9 @@ public interface CategoryMapper {
 
     int updateByPrimaryKeySelective(Category record);
 
-    int updateByPrimaryKey(Category record);
 
-    // 以上是逆向工程生成的
+    // 以上是逆向工程生成的  int updateByPrimaryKey(Category record);
+
 
     int getCategoryCount();
 
